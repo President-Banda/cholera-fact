@@ -1,0 +1,26 @@
+# Configure Services
+
+services:
+  laravel-docker:
+    container_name: laravel-docker
+    build: .
+    volumes:
+      - ./cholera-fact:/var/www/html
+    ports:
+      - 9005:80
+
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cholera_fact
+
+    ports:
+      -  3310:3310
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9006:80
+    environment:
+      - PMA_Arbitrary=1
